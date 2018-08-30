@@ -3,6 +3,7 @@
     <div class="header">
         <div>New Event</div>
     </div>
+    <!--ABOUT SECTION STARTS -->
     <div class="about">
         <h2>About</h2>
         <hr>
@@ -73,6 +74,9 @@
                 </tr>
             </table>
     </div>
+    <!--ABOUT SECTION ENDS -->
+
+    <!--COORDINATOR SECTION STARTS -->
     <div class="coordinator">
         <h2>Coordinator</h2>
         <hr>
@@ -103,9 +107,11 @@
                         <div class="error" v-show="emailError">Invalid Email</div>
                     </td>
                 </tr>                            
-            </tbody></table>
-        
+            </tbody></table>        
     </div>
+    <!--COORDINATOR SECTION ENDS -->
+
+    <!--WHEN SECTION STARTS -->
     <div class="when">
         <h2>When</h2>
         <hr>
@@ -152,6 +158,7 @@
             </tbody>
             </table>
     </div>
+    <!--WHEN SECTION ENDS -->
     <div class="button">
         <form @submit.prevent="publishEvent()">            
             <input type="submit" value="PUBLISH EVENT">
@@ -217,7 +224,7 @@ export default {
             }
 
             console.log(
-                `User Id ` + this.userId + `\n`
+                `User ID :` + this.userId + `\n`
                 + `Event Title : ` + this.title + `\n`
                 + `Event Description : ` + this.description + `\n`
                 + `Event Category ID : ` + this.selectedCategory + `\n`
@@ -231,7 +238,6 @@ export default {
         checkMeridian() {
             if(this.meridian == 'am') {
                 this.meridian = 'AM'
-                this.newHour -= 12
             }else {
                 this.meridian = 'PM'
                 
