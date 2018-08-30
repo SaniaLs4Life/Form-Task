@@ -150,7 +150,7 @@ input[type="time"]{
     left:7px;
     border-radius: 2px;
     text-align: center;
-    width:180px;
+    width:140px;
 }
 .error::after, .error::before{
     right: 100%;
@@ -174,6 +174,19 @@ input[type="time"]{
 	border-width: 5px;
 	margin-top: -5px;
 }
-
-
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #EEE;
+    margin: 1em 0;
+    padding: 0;
+}
+label{
+    font-weight: bold;
+    color: #AFBFD5;
+}
+::placeholder{
+    color:#DDD;
+}
 </style>

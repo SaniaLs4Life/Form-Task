@@ -46,13 +46,18 @@
                 </tr>
                 <tr>
                     <td> 
-                        <label>PAYMENT</label>
+                        <label :class="{ 'text-control' : feeError }">PAYMENT</label>
                     </td>
                     <td>
-                        <input type="radio" name="e-option" value="free" v-model="paymentPicked">Free event &nbsp;&nbsp;
-                        <input type="radio" name="e-option" value="paid" v-model="paymentPicked">Paid event &nbsp;&nbsp;
-                        <span v-show="fee"><input :class="{ 'inputs-control' : feeError }" type="text" v-model="feeCost"  placeholder="Fee" class="number">&nbsp;&nbsp;$</span>
-                    </td>
+                        <div>
+                            <input id="radio-1" class="radio-custom" value="free"  v-model="paymentPicked" name="radio-group" type="radio" checked>
+                            <label for="radio-1"  class="radio-custom-label" id="radio-custom2">Free event</label>
+                            <input id="radio-2" class="radio-custom" value="paid" v-model="paymentPicked" name="radio-group" type="radio">
+                            <label for="radio-2"  class="radio-custom-label" id="radio-custom2">Paid event</label>
+                            <span v-show="fee"><input :class="{ 'inputs-control' : feeError }" type="text" v-model="feeCost"  placeholder="Fee" class="number">&nbsp;&nbsp;$</span>
+                        </div>
+                        
+                        
                     <td>
                         <div class="error" v-show="feeError">Fee cannot be empty</div>
                     </td>
@@ -63,7 +68,7 @@
                     </td>
                     <td>
                         <input type="text" v-model="reward" placeholder="Number" class="number">
-                        &nbsp;&nbsp;reward points for attendance
+                        &nbsp;&nbsp;<span class="rewardMessage">reward points for attendance</span>
                     </td>
                 </tr>
             </table>
@@ -107,19 +112,21 @@
             <table>
                 <tbody><tr>
                     <td> 
-                        <label :class="{ 'text-control' : dateError || dateInvalidError }">STARTS ON<span class="character-limit">*</span></label>
+                        <label :class="{ 'text-control' : dateError || dateInvalidError || hourError || hourInvalidError || minuteError || minuteInvalidError }">STARTS ON<span class="character-limit">*</span></label>
                     </td>
                     <td>
                         <input type="date" v-model="date" :class="{ 'inputs-control' : dateInvalidError || dateError }">
                         &nbsp;
                         at
                         &nbsp;
-                        <input type="text" :class="{ 'inputs-control' : hourError || hourInvalidError }" placeholder="Hour" v-model="hour" class="time">
+                        <input type="text" :class="{ 'inputs-control' : hourError || hourInvalidError }" placeholder="--" v-model="hour" class="time">
                         :
-                        <input type="text" :class="{ 'inputs-control' : minuteError || minuteInvalidError    }" placeholder="Minute" v-model="minute" class="time">
+                        <input type="text" :class="{ 'inputs-control' : minuteError || minuteInvalidError    }" placeholder="--" v-model="minute" class="time">
                         &nbsp;
-                        <input type="radio" name="e2-option" v-model="meridian" value="am" checked="">AM &nbsp;
-                        <input type="radio" name="e2-option" v-model="meridian" value="pm">PM
+                            <input id="radio-3" class="radio-custom" value="am"  v-model="meridian" name="meridian-group" type="radio" checked>
+                            <label for="radio-3"  class="radio-custom-label" id="radio-custom2">AM</label>
+                            <input id="radio-4" class="radio-custom" value="pm" v-model="meridian" name="meridian-group" type="radio">
+                            <label for="radio-4"  class="radio-custom-label" id="radio-custom2">PM</label>
                     </td>
                     <td>
                         <div class="error" v-show="dateError">Date cannot be empty</div>
@@ -201,6 +208,13 @@ export default {
             this.checkMeridian()
             this.feeCheck()
             this.validEmail()
+
+            if(this.titleError || this.descriptionError || this.feeError || this.responsibleError || this.dateError || this.dateInvalidError
+            || this.hourError || this.hourInvalidError || this.minuteError || this.minuteInvalidError || this.emailError){
+                return
+            }else {
+                this.$router.push('/success')
+            }
 
             console.log(
                 `User Id ` + this.userId + `\n`
@@ -366,6 +380,56 @@ export default {
     width:65px;
     text-align: center;
 }
+.rewardMessage{
+    color:#666 !important;
+    font-weight: bold;
+}
+
+
+
+
+.radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.radio-custom-label {
+    position: relative;
+}
+
+.radio-custom + .radio-custom-label:before {
+    content: '';
+    background: #FFF;
+    border: 1px solid #8CA2C2;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    background: #8CA2C2;
+    box-shadow: inset 0px 0px 0px 4px #fff;
+}
+#radio-custom2{
+    color:#666;
+}
+
+
 </style>
 
 
