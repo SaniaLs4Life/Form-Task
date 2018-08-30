@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-      <app-container></app-container>
-      <app-success v-show="false"></app-success>
-  </div>
+<div id="app">
+    <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -66,6 +65,7 @@ body{
     font-size: 14px;
     background: #F0FCF3;
     box-shadow: 0px 0px 2px 0px rgba(181,181,181,0.86);
+    margin-top:25px;
 }
 .success h2{
     color:#72C077;
@@ -135,7 +135,7 @@ input[type="time"]{
     color: #666;
 }
 .duration{
-    width:100px !important;
+    width:70px !important;
 }
 #duration{
     margin-left:60px;
@@ -174,5 +174,6 @@ input[type="time"]{
 	border-width: 5px;
 	margin-top: -5px;
 }
+
 
 </style>
