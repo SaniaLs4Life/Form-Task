@@ -1,4 +1,4 @@
-# form-task
+# FORM TASK
 
 > Vue Form App for events
 
