@@ -344,10 +344,10 @@ export default {
         .then(response => this.responsible = response.data)
         .catch(error => console.log(error))
         
+        
     },
     computed: {
-        charactersLeft() {
-            
+        charactersLeft() {            
             var char = this.description.length, 
             limit = 140
             return char + '/' + limit
